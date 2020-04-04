@@ -3,10 +3,14 @@ import logo from "./logo.svg";
 import "./App.css";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
+import TodoList from "./TodoList.js"
 
 function App() {
   return (
     <div className="App">
+      <div class="ListItem">
+        <TodoList/>
+      </div>
       <div className="Calendar">
         <FullCalendar
           defaultView="dayGridMonth"
