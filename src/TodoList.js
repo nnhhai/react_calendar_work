@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 class TodoComplete extends Component{
 	constructor(props){
 		super(props);
-		this.state = {comList : [
+		this.state = {list : [
 	  		{
 	  			title : 'finish homework',
 	  			desc : 'try your best to finish all homework for next week class'
@@ -19,9 +19,9 @@ class TodoComplete extends Component{
 	}
 
 	addCom = (todo) => {
-		let list = this.state.list;
-		list.push(todo)
-		this.setState({list : list});
+		let newlist = this.state.list;
+		newlist.push(todo)
+		this.setState({list : newlist});
 	}
 
 	display = () => {
@@ -60,8 +60,8 @@ class TodoIncomplete extends Component{
 	}
 
 	addCom = (todo) => {
-		let list = this.state.list;
-		list.push(todo);
+		let newlist = this.state.list;
+		newlist.push(todo);
 		this.setState({list : list});
 	}
 
