@@ -1,0 +1,22 @@
+.Todo {
+  width: 300px;
+  border-color: aquamarine;
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+  transition: border-color .3s ease-in-out,box-shadow .25s ease-in-out;
+}
+
+.Todo:hover {
+  border-color: red;
+  box-shadow: 0 1rem 2rem rgba(0,0,0,.175)!important;
+}
+
+.Todo-title {
+  font-size: 18px;
+  border-bottom: 1px solid rgba(0,0,0,.5);
+  text-align: left;
+}
+
+.Todo-description {
+  word-wrap: break-word;
+  text-align: left;
+}
