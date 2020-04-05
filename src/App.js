@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import "./App.css";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
-import TodoList from "./TodoList.js";
+import TodoList from "./TodoList.js"
+import AddTodo from "./AddTodo.js"
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import ChangeStateModal from "./ChangeStateModal";
