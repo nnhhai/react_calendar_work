@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import "./AddTodoForm.css"
 class AddTodo extends Component {
   constructor(props) {
     super(props);
@@ -31,13 +32,13 @@ class AddTodo extends Component {
   render () {
     return (
       <form ref="form" onSubmit={this.onSubmit} className="ToDoItem">
-        <input type="text" ref="itemTitle" placeholder="Title"/>
+        <input type="text" ref="itemTitle" class="Todo-title" placeholder="Title"/>
         <br></br>
-        <textarea ref="itemDescripton" placeholder="Description"/>
+        <textarea ref="itemDescripton" class="Todo-description" placeholder="Description"/>
         <br></br>
         <DatePicker selected={this.state.startDate} onChange={this.handleChange}/>
         <br></br>
-        <button type="submit">Add</button> 
+        <button type="submit" id="buton-confirm" >Add</button> 
       </form>
     );   
   }
