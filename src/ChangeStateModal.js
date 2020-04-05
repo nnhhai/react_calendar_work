@@ -31,7 +31,7 @@ class ChangeStateModal extends Component {
     return listTodo.map((work, index) =>
       work.state === -1 ? (
         <li key={index}>
-          <span className="work-title">{work.title}</span>
+          <span className="work-title">{work.title}/</span>
           <span className="work-time">{work.date}</span>
           <button
             className="completed"
@@ -50,13 +50,13 @@ class ChangeStateModal extends Component {
         </li>
       ) : work.state === 1 ? (
         <li key={index}>
-          <span className="work-title">{work.title}</span>
+          <span className="work-title">{work.title}/</span>
           <span className="work-time">{work.date}</span>
           <span id="checked-button">&#10003;</span>
         </li>
       ) : (
         <li key={index}>
-          <span className="work-title">{work.title}</span>
+          <span className="work-title">{work.title}/</span>
           <span className="work-time">{work.date}</span>
           <span id="checked-button">&#10008;</span>
         </li>

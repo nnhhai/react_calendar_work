@@ -2,14 +2,15 @@ import React, { Component } from "react";
 import "./App.css";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
-import TodoList from "./TodoList.js"
-import AddTodo from "./AddTodo.js"
+import TodoList from "./TodoList.js";
+import AddTodo from "./AddTodo.js";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import ChangeStateModal from "./ChangeStateModal";
+import Todo from "./Todo";
 import "./Modal.css";
 var arrListYes = [];
-
+var arrAddedWork = [];
 class App extends Component {
   constructor(props) {
     super(props);
@@ -17,14 +18,8 @@ class App extends Component {
       toDoList: [
         {
           title: "ITSS",
-          description: "code React",
+          description: "create react app",
           date: "2020-04-04",
-          state: -1,
-        },
-        {
-          title: "ITSS",
-          description: "code React",
-          date: "2020-04-06",
           state: -1,
         },
       ],
@@ -32,21 +27,28 @@ class App extends Component {
       isModal: false,
       isCalendar: true,
       isToDoList: false,
+      isAddToDo: false,
+      isTodo: true,
     };
     this.renderToDoList = this.renderToDoList.bind(this);
+    this.renderAddToDo = this.renderAddToDo.bind(this);
     // this.handlerChangedState = this.handlerChangedState.bind(this);
   }
 
   componentDidMount() {
     var date = new Date();
     date.setDate(date.getDate() - 1);
-    console.log(date.toISOString().split("T")[0]);
+    console.log(date.toISOString().split("T")[0] === "2020-04-04");
     this.state.toDoList.map((item, i) => {
       if (item.date === date.toISOString().split("T")[0] && item.state === -1)
         arrListYes.push(item);
     });
     if (arrListYes.length > 0)
-      this.setState({ isCalendar: false, isModal: true, listYesterday: arrListYes });
+      this.setState({
+        isCalendar: false,
+        isModal: true,
+        listYesterday: arrListYes,
+      });
   }
 
   handlerChangedState = (array) => {
@@ -69,12 +71,31 @@ class App extends Component {
     console.log(this.state.isCalendar);
   }
 
+  renderAddToDo() {
+    this.setState({
+      isCalendar: false,
+      isToDoList: false,
+      isAddToDo: true,
+    });
+  }
+
+  handlerAddItemToList = (item) => {
+    console.log(item);
+    arrAddedWork.push(item);
+    this.setState({
+      toDoList: arrAddedWork,
+      isAddToDo: false,
+      isCalendar: true,
+    });
+  };
+
   render() {
     return (
       <div className="App">
         {this.state.isCalendar ? (
           <div>
             <button onClick={this.renderToDoList}>List of Works</button>
+            <button onClick={this.renderAddToDo}>Add Work</button>
             <div className="Calendar">
               <FullCalendar
                 defaultView="dayGridMonth"
@@ -84,11 +105,18 @@ class App extends Component {
                   center: "title ",
                   right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek",
                 }}
+                events={this.state.toDoList}
+                eventClick={function (info) {
+                  alert("Event: " + info.event.title + "\n" + "Time: " + info.event.start);
+
+                }}
               />
             </div>
           </div>
         ) : this.state.isToDoList ? (
           <TodoList />
+        ) : this.state.isAddToDo ? (
+          <AddTodo addItem={this.handlerAddItemToList} />
         ) : null}
         <ChangeStateModal
           content={{
