@@ -107,6 +107,9 @@ class TodoList extends Component {
 				</div>
 				<TodoComplete/>
 				<TodoIncomplete/>
+
+				<button class="create"></button>
+				<button class="delete"></button>
 			</div>
 	)}
 }
