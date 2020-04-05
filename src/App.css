@@ -2,7 +2,12 @@
 @import '~@fullcalendar/daygrid/main.css';
 
 .App {
-  text-align: center;
+  width: 90vw;
+  margin: 20px auto;
+  /*display: flex;*/
+  /*flex-direction: column;*/
+  /*justify-content: center;*/
+  /*align-items: center;*/
 }
 
 .App-logo {
@@ -32,8 +37,99 @@
 }
 
 .Calendar {
+  height: 700px;
+  padding-top: 5px;
+  width: 48%;
+  float:right;
   position: relative;
   align-items: center;
+  background-color: white;
+
+  padding: 4px 2px;
+  margin: 12px;
+  border: 1px solid black;
+  border-radius: 4px;
+
+  box-shadow: 1px 2px 5px 3px rgba(0,0,0,.1);
+}
+
+.ListItem{
+  height: 700px;
+  width: 48%;
+  padding: 4px 2px;
+  margin: 12px;
+  border: 1px solid black;
+  border-radius: 4px;
+
+  box-shadow: 1px 2px 5px 3px rgba(0,0,0,.1);
+  float:left;
+  background: #bfd0f2;
+  text-align: center;
+}
+/*
+.ListItem .title{
+  color:#fffa00;
+}
+.ListItem .todoComplete .subtitle{
+  color:#fffa00;
+}
+.ListItem .todoIncomplete .subtitle{
+  color:#fffa00;
+}*/
+
+.ListItem .todoComplete{
+  width: 47%;
+  float:left;
+  padding: 2px;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.ListItem .todoIncomplete{
+  width: 47%;
+  float:right;
+  padding: 2px;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.ToDoListItem {
+
+  margin: 20px;
+  border-radius: 4px;
+  width: 300px;
+  box-shadow: 1px 2px 5px 3px rgba(0,0,0,.1);
+  padding: 4px 2px;
+}
+
+.ListItem .todoComplete .ToDoListItem{
+  border: 1px solid aquamarine;
+  background-color: #fafbfd;
+}
+
+.ListItem .todoIncomplete .ToDoListItem{
+  border: 1px solid #ff2424;
+  background-color: #ffd6d6;
+}
+
+.ToDoListItem-title {
+  font-size: 18px;
+  margin: 0 8px 4px;
+  border-bottom: 1px solid #333;
+  text-align: left;
+  padding: 4px 8px;
+}
+
+.ToDoListItem-description {
+  word-wrap: break-word;
+  padding: 8px;
 }
 
 @keyframes App-logo-spin {
