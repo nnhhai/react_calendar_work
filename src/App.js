@@ -8,9 +8,7 @@ import TodoList from "./TodoList.js"
 function App() {
   return (
     <div className="App">
-      <div class="ListItem">
-        <TodoList/>
-      </div>
+      <TodoList/>
       <div className="Calendar">
         <FullCalendar
           defaultView="dayGridMonth"
