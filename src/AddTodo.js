@@ -1,9 +1,19 @@
 import React, { Component } from 'react';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 class AddTodo extends Component {
   constructor(props) {
     super(props);
     this.onSubmit = this.onSubmit.bind(this);
   }
+  state = {
+    startDate: new Date()
+  };
+  handleChange = date => {
+    this.setState({
+      startDate: date
+    });
+  };
   onSubmit(event) {
     event.preventDefault();
     let newItemTitle = this.refs.itemTitle.value;
@@ -24,6 +34,8 @@ class AddTodo extends Component {
         <input type="text" ref="itemTitle" placeholder="Title"/>
         <br></br>
         <textarea ref="itemDescripton" placeholder="Description"/>
+        <br></br>
+        <DatePicker selected={this.state.startDate} onChange={this.handleChange}/>
         <br></br>
         <button type="submit">Add</button> 
       </form>
