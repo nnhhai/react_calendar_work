@@ -67,6 +67,10 @@
 
 }
 
+.todoList_overlay{
+
+}
+
 .ListItem{
   height: 700px;
   padding: 4px 2px;
@@ -160,6 +164,10 @@
   position: absolute;
   z-index: 200;
   border-radius: 12px;
+}
+
+.addTodo_overlay{
+  
 }
 
 @keyframes App-logo-spin {
