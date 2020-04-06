@@ -67,7 +67,7 @@ class App extends Component {
     });
     if (arrListYes.length > 0)
       this.setState({
-        isCalendar: false,
+        // isCalendar: false,
         isModal: true,
         listYesterday: arrListYes,
       });
@@ -91,12 +91,18 @@ class App extends Component {
   // }
 
   renderToDoList() {
-    this.setState({ isCalendar: false, isToDoList: true });
+    this.setState({ 
+      // isCalendar: false, 
+      isToDoList: true 
+    });
     // console.log(this.state.isCalendar);
   }
 
   renderCalendar = () => {
-    this.setState({ isCalendar: true, isToDoList: false });
+    this.setState({ 
+      // isCalendar: true, 
+      isToDoList: false 
+    });
     // console.log(this.state.isCalendar);
   }
 
@@ -109,7 +115,7 @@ class App extends Component {
 
   renderAddToDo() {
     this.setState({
-      isCalendar: false,
+      // isCalendar: false,
       isToDoList: false,
       isAddToDo: true,
     });
@@ -122,7 +128,7 @@ class App extends Component {
     this.setState({
       toDoList: arrAddedWork,
       isAddToDo: false,
-      isCalendar: true,
+      // isCalendar: true,
     });
   };
 
@@ -132,7 +138,6 @@ class App extends Component {
     // var todoIncomplete = this.state.toDoList.filter((todo)=>{return todo.state === 0;})
     return (
       <div className="App">
-        {this.state.isCalendar ? (
           <div>
             <div className="Calendar">
               <FullCalendar
@@ -154,7 +159,6 @@ class App extends Component {
             </div>
 
           </div>
-        ) : this.state.isToDoList ? (
             <ReactModal 
              isOpen={this.state.isToDoList}
              className="todoList"
@@ -173,19 +177,16 @@ class App extends Component {
 
             </div>  
           </ReactModal>
-          // <TodoList toDoList={this.toDoList} listYesterday={this.listYesterday} />
           
 
-        ) : this.state.isAddToDo ? (
           <ReactModal 
              isOpen={this.state.isAddToDo}
              className="addTodo"
              overlayClassName="addTodo_overlay"
           >
             <AddTodo addItem={this.handlerAddItemToList} />
-            <button onClick={()=>{this.setState({isCalendar: true, isToDoList: false, isAddToDo: false,})}}>Close Modal</button>
+            <button onClick={()=>{this.setState({isToDoList: false, isAddToDo: false,})}}>Close Modal</button>
           </ReactModal>
-        ) : null}
 
         <ChangeStateModal
           content={{
