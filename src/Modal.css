@@ -23,12 +23,17 @@
 }
 
 .change-state-modal>.modal-content {
-    margin: auto;
+    /*margin: auto;*/
+    /*margin-top: 150px;*/
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-75%);
+
     padding: 20px;
-    margin-top: 150px;
     width: 55%;
     background-color:white;
-    text-align: center;
+    text-align: center; 
     border-radius: 12px;
 }
 
@@ -90,7 +95,7 @@
     display: block;
     padding: 10px;
     margin: 0 auto;
-    background: lavender;
+    /*background: lavender;*/
     cursor: pointer;
 }
 

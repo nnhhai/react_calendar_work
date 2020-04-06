@@ -3,7 +3,7 @@
 
 .App {
   margin: 20px auto;
-  width: 80vw;
+  /*width: 80vw;*/
   position: relative;
   /*display: flex;*/
   /*flex-direction: column;*/
@@ -38,18 +38,22 @@
 }
 
 .Calendar {
-  width: 60%;
-  height: 700px;
-  padding-top: 5px;
+  /*width: 60%;*/
+  /*height: 700px;*/
   position: relative;
   align-items: center;
   background-color: white;
 
   padding: 4px 2px;
-  margin: 12px auto;
+  margin: 20px auto;
   border: 1px solid black;
   border-radius: 4px;
   box-shadow: 1px 2px 5px 3px rgba(0, 0, 0, .1);
+}
+
+.Calendar button{
+  text-align: center;
+  margin:20px;
 }
 
 .todoList {
@@ -66,12 +70,26 @@
 
 }
 
-.todoList_overlay{
-
+.overlay{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  background-color: rgba(0,0,0,0.4);
+}
+.overlay >*:not(.todoList) {
+    -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
 }
 
 .ListItem {
-  height: 700px;
+  width: 65vw;
+  max-height: 80vh;
   padding: 4px 2px;
   border: 1px solid black;
   border-radius: 4px;
@@ -80,38 +98,41 @@
   text-align: center;
 }
 
-/*
-.ListItem .title{
-  color:#fffa00;
+.ListItem button{
+  text-align: center;
+  margin:20px;
 }
-.ListItem .todoComplete .subtitle{
-  color:#fffa00;
-}
-.ListItem .todoIncomplete .subtitle{
-  color:#fffa00;
-}*/
 
 .ListItem .todoComplete {
-  width: 47%;
+  width: 100%;
   float: left;
-  padding: 2px;
-  overflow: scroll;
+  margin: 15px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  border: 1px solid #1d3dcb;
+  border-radius: 4px;
+  background-color: #9896ff ;
 }
 
 .ListItem .todoIncomplete {
-  width: 47%;
+  width: 100%;
   float: right;
-  padding: 2px;
-  overflow: scroll;
+  margin: 15px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  
+  border: 1px solid #ff2424;
+  border-radius: 4px;
+  background-color: #ffd6d6;
+}
 
+.ListItem h1{
+  margin: 25px 0;
 }
 
 .ToDoListItem {
@@ -120,24 +141,9 @@
   width: 300px;
   box-shadow: 1px 2px 5px 3px rgba(0, 0, 0, .1);
   padding: 4px 2px;
-  position: relative;
-}
-
-.ToDoListItem .delete {
-  position: absolute;
-  top: 5px;
-  right: 10px;
-  cursor: pointer;
-}
-
-.ListItem .todoComplete .ToDoListItem {
+  position: relative;  
   border: 1px solid aquamarine;
   background-color: #fafbfd;
-}
-
-.ListItem .todoIncomplete .ToDoListItem {
-  border: 1px solid #ff2424;
-  background-color: #ffd6d6;
 }
 
 .ToDoListItem-title {
@@ -152,6 +158,14 @@
   word-wrap: break-word;
   padding: 8px;
 }
+
+.ToDoListItem .delete {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  cursor: pointer;
+}
+
 
 .addTodo {
   display: block;
@@ -185,12 +199,9 @@
   border-radius: 12px;
 }
 
-<<<<<<< HEAD
 .addTodo_overlay{
   
 }
-
-=======
 .addTodo>.addTodo-content> .close {
   color: #aaaaaa;
   float: right;
@@ -204,7 +215,7 @@
   text-decoration: none;
   cursor: pointer;
 }
->>>>>>> eadbc1e11e1dc0ac7bf0f4d0be680e1d3bb6182f
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

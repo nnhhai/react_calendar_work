@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import "./App.css";
-import Form from "react-bootstrap/Form";
+
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Button from 'react-bootstrap/Button'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
@@ -35,7 +40,7 @@ class App extends Component {
           title: "master japanese",
           description: "have N1",
           date: "2020-04-05",
-          state: -1,
+          state: 1,
         },
         {
           title: "learn react basic",
@@ -80,14 +85,6 @@ class App extends Component {
     this.setState({ isCalendar: true, toDoList: arr3, isModal: false });
   };
 
-  // CloseModal() {
-  //   this.setState({
-  //     modal: {
-  //       isOpen: false,
-  //     },
-  //   });
-  // }
-
   renderToDoList() {
     this.setState({
       // isCalendar: false,
@@ -131,13 +128,12 @@ class App extends Component {
   };
 
   render() {
-    // var todoComplete = this.state.toDoList.filter((todo)=>{return todo.state === 1;})
 
-    // var todoIncomplete = this.state.toDoList.filter((todo)=>{return todo.state === 0;})
     return (
+
       <div className="App">
-        <div>
-          <div className="Calendar">
+        <Container>
+          <Row className="Calendar justify-content-md-center">
             <FullCalendar
               defaultView="dayGridMonth"
               plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
@@ -157,35 +153,37 @@ class App extends Component {
                 );
               }}
             />
-            <button onClick={this.renderToDoList}>List of Works</button>
-            <button onClick={this.renderAddToDo}>Add Work</button>
-          </div>
-        </div>
+            <Button variant="primary" onClick={this.renderToDoList}>List of Works</Button>
+            <Button variant="primary" onClick={this.renderAddToDo}>Add Work</Button>
+          </Row>
         <ReactModal
           isOpen={this.state.isToDoList}
           className="todoList"
-          overlayClassName="todoList_overlay"
+          overlayClassName="overlay"
         >
-          <div className="ListItem">
-            <div className="title">
-              <h1>To Do List</h1>
-              <TodoComplete
-                list={this.state.toDoList}
-                delete={this.deleteTodo}
-              />
-              <TodoIncomplete
-                list={this.state.toDoList}
-                delete={this.deleteTodo}
-              />
-            </div>
+            <Row className="ListItem justify-content-md-center" > 
+                <Col sm={12} className="title">
+                  <h1>To Do List</h1>
+                </Col>
+                <TodoComplete
+                  list={this.state.toDoList}
+                  delete={this.deleteTodo}
+                />
+                <TodoIncomplete
+                  list={this.state.toDoList}
+                  delete={this.deleteTodo}
+                />
+                <Col sm={1}></Col>
 
-            <button class="btn" onClick={this.renderAddToDo}>
-              Create new Work
-            </button>
-            <button class="btn" onClick={this.renderCalendar}>
-              Back to Calendar
-            </button>
-          </div>
+                <Button variant="primary" onClick={this.renderAddToDo}>
+                  Create new Work
+                </Button>
+                <Button className="justify-content-md-center" variant="primary" onClick={this.renderCalendar}>
+                  Back to Calendar
+                </Button>
+
+            </Row>
+
         </ReactModal>
 
         <ReactModal
@@ -216,7 +214,10 @@ class App extends Component {
           modalIsOpen={this.state.isModal}
           handlerChangedState={this.handlerChangedState}
         />
+        </Container> 
       </div>
+      
+
     );
   }
 }
