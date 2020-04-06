@@ -21,9 +21,10 @@ class AddTodo extends Component {
     let newItemDes = this.refs.itemDescripton.value;
     if(newItemTitle && newItemDes) {
       let item = {
-        id: this.props.length +1,
         title: newItemTitle,
-        des: newItemDes
+        description: newItemDes,
+        date: this.state.startDate.toISOString().split("T")[0],
+        state: -1
       }
       this.props.addItem(item);
       this.refs.form.reset();
