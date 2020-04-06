@@ -1,16 +1,27 @@
 import React, { Component } from "react";
 import "./App.css";
+import Form from 'react-bootstrap/Form'
+
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
-import TodoList from "./TodoList.js";
+
 import AddTodo from "./AddTodo.js";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import ChangeStateModal from "./ChangeStateModal";
 import Todo from "./Todo";
+
+import TodoComplete from "./TodoComplete.js";
+import TodoIncomplete from "./TodoIncomplete.js";
+import ReactModal from "react-modal";
+
 import "./Modal.css";
+
+
 var arrListYes = [];
 var arrAddedWork = [];
+
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -22,13 +33,24 @@ class App extends Component {
           date: "2020-04-04",
           state: -1,
         },
+        {
+          title: "master japanese",
+          description: "have N1",
+          date: "2020-04-04",
+          state: 1,
+        },
+        {
+          title: "learn react basic",
+          description: "learn fundamental react component",
+          date: "2020-04-04",
+          state: 0,
+        },
       ],
       listYesterday: [],
       isModal: false,
       isCalendar: true,
       isToDoList: false,
       isAddToDo: false,
-      isTodo: true,
     };
     this.renderToDoList = this.renderToDoList.bind(this);
     this.renderAddToDo = this.renderAddToDo.bind(this);
@@ -49,6 +71,7 @@ class App extends Component {
         isModal: true,
         listYesterday: arrListYes,
       });
+    console.log(this.state)
   }
 
   handlerChangedState = (array) => {
@@ -58,17 +81,30 @@ class App extends Component {
     );
     this.setState({ isCalendar: true, toDoList: arr3, isModal: false });
   };
-  CloseModal() {
-    this.setState({
-      modal: {
-        isOpen: false,
-      },
-    });
-  }
+
+  // CloseModal() {
+  //   this.setState({
+  //     modal: {
+  //       isOpen: false,
+  //     },
+  //   });
+  // }
 
   renderToDoList() {
     this.setState({ isCalendar: false, isToDoList: true });
-    console.log(this.state.isCalendar);
+    // console.log(this.state.isCalendar);
+  }
+
+  renderCalendar = () => {
+    this.setState({ isCalendar: true, isToDoList: false });
+    // console.log(this.state.isCalendar);
+  }
+
+  deleteTodo = (index) => {
+    let newlist = this.state.toDoList;
+    var deleted = newlist.splice(index,1);
+    console.log(newlist);
+    this.setState({toDoList: newlist});
   }
 
   renderAddToDo() {
@@ -77,6 +113,7 @@ class App extends Component {
       isToDoList: false,
       isAddToDo: true,
     });
+    console.log(this.state)
   }
 
   handlerAddItemToList = (item) => {
@@ -90,12 +127,13 @@ class App extends Component {
   };
 
   render() {
+    // var todoComplete = this.state.toDoList.filter((todo)=>{return todo.state === 1;})
+
+    // var todoIncomplete = this.state.toDoList.filter((todo)=>{return todo.state === 0;})
     return (
       <div className="App">
         {this.state.isCalendar ? (
           <div>
-            <button onClick={this.renderToDoList}>List of Works</button>
-            <button onClick={this.renderAddToDo}>Add Work</button>
             <div className="Calendar">
               <FullCalendar
                 defaultView="dayGridMonth"
@@ -103,7 +141,7 @@ class App extends Component {
                 header={{
                   left: "prev,next today ",
                   center: "title ",
-                  right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek",
+                  right: "dayGridMonth",
                 }}
                 events={this.state.toDoList}
                 eventClick={function (info) {
@@ -111,13 +149,44 @@ class App extends Component {
 
                 }}
               />
+              <button onClick={this.renderToDoList}>List of Works</button>
+              <button onClick={this.renderAddToDo}>Add Work</button>
             </div>
+
           </div>
         ) : this.state.isToDoList ? (
-          <TodoList />
+            <ReactModal 
+             isOpen={this.state.isToDoList}
+             className="todoList"
+             overlayClassName="todoList_overlay"
+            >
+            <div className="ListItem">
+              <div className="title">
+                <h1>To Do List</h1>              
+                <TodoComplete list={this.state.toDoList} delete={this.deleteTodo}/>
+                <TodoIncomplete list={this.state.toDoList} delete={this.deleteTodo}/>
+              </div>
+
+
+              <button class="btn" onClick={this.renderAddToDo}>Create new Work</button>
+              <button class="btn" onClick={this.renderCalendar}>Back to Calendar</button>
+
+            </div>  
+          </ReactModal>
+          // <TodoList toDoList={this.toDoList} listYesterday={this.listYesterday} />
+          
+
         ) : this.state.isAddToDo ? (
-          <AddTodo addItem={this.handlerAddItemToList} />
+          <ReactModal 
+             isOpen={this.state.isAddToDo}
+             className="addTodo"
+             overlayClassName="addTodo_overlay"
+          >
+            <AddTodo addItem={this.handlerAddItemToList} />
+            <button onClick={()=>{this.setState({isCalendar: true, isToDoList: false, isAddToDo: false,})}}>Close Modal</button>
+          </ReactModal>
         ) : null}
+
         <ChangeStateModal
           content={{
             className: "change-state-modal",
@@ -126,9 +195,7 @@ class App extends Component {
           }}
           toDoList={this.state.listYesterday}
           modalIsOpen={this.state.isModal}
-          requestClose={() => {
-            this.CloseModal();
-          }}
+
           handlerChangedState={this.handlerChangedState}
         />
       </div>
