@@ -38,7 +38,7 @@
 }
 
 .Calendar {
-  width: 48%;
+  width: 60%;
   height: 700px;
   padding-top: 5px;
   position: relative;
@@ -49,11 +49,10 @@
   margin: 12px auto;
   border: 1px solid black;
   border-radius: 4px;
-
-  box-shadow: 1px 2px 5px 3px rgba(0,0,0,.1);
+  box-shadow: 1px 2px 5px 3px rgba(0, 0, 0, .1);
 }
 
-.todoList{
+.todoList {
   top: 50%;
   left: 50%;
   right: auto;
@@ -67,15 +66,16 @@
 
 }
 
-.ListItem{
+.ListItem {
   height: 700px;
   padding: 4px 2px;
   border: 1px solid black;
   border-radius: 4px;
-  box-shadow: 1px 2px 5px 3px rgba(0,0,0,.1);
+  box-shadow: 1px 2px 5px 3px rgba(0, 0, 0, .1);
   background: #bfd0f2;
   text-align: center;
 }
+
 /*
 .ListItem .title{
   color:#fffa00;
@@ -87,9 +87,9 @@
   color:#fffa00;
 }*/
 
-.ListItem .todoComplete{
+.ListItem .todoComplete {
   width: 47%;
-  float:left;
+  float: left;
   padding: 2px;
   overflow: scroll;
   display: flex;
@@ -98,9 +98,9 @@
   align-items: center;
 }
 
-.ListItem .todoIncomplete{
+.ListItem .todoIncomplete {
   width: 47%;
-  float:right;
+  float: right;
   padding: 2px;
   overflow: scroll;
   display: flex;
@@ -114,24 +114,24 @@
   margin: 20px;
   border-radius: 4px;
   width: 300px;
-  box-shadow: 1px 2px 5px 3px rgba(0,0,0,.1);
+  box-shadow: 1px 2px 5px 3px rgba(0, 0, 0, .1);
   padding: 4px 2px;
   position: relative;
 }
 
-.ToDoListItem .delete{
+.ToDoListItem .delete {
   position: absolute;
-  top:5px;
+  top: 5px;
   right: 10px;
   cursor: pointer;
 }
 
-.ListItem .todoComplete .ToDoListItem{
+.ListItem .todoComplete .ToDoListItem {
   border: 1px solid aquamarine;
   background-color: #fafbfd;
 }
 
-.ListItem .todoIncomplete .ToDoListItem{
+.ListItem .todoIncomplete .ToDoListItem {
   border: 1px solid #ff2424;
   background-color: #ffd6d6;
 }
@@ -149,23 +149,56 @@
   padding: 8px;
 }
 
-.addTodo{
-  top: 50%;
-  left: 50%;
-  right: auto;
-  bottom: auto;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
-  padding: 0;
-  position: absolute;
-  z-index: 200;
+.addTodo {
+  display: block;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  padding-top: 100px;
+  /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0);
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.addTodo>.addTodo-content {
+  margin: auto;
+  padding: 20px;
+  margin-top: 150px;
+  width: 35%;
+  background-color:white;
+  text-align: center;
   border-radius: 12px;
 }
 
+.addTodo>.addTodo-content> .close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.addTodo>.addTodo-content> .close:hover,
+.addTodo>.addTodo-content> .close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
