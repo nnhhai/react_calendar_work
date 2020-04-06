@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import Form from 'react-bootstrap/Form'
+import Form from "react-bootstrap/Form";
 
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
@@ -17,10 +17,8 @@ import ReactModal from "react-modal";
 
 import "./Modal.css";
 
-
 var arrListYes = [];
 var arrAddedWork = [];
-
 
 class App extends Component {
   constructor(props) {
@@ -30,14 +28,14 @@ class App extends Component {
         {
           title: "ITSS",
           description: "create react app",
-          date: "2020-04-04",
+          date: "2020-04-05",
           state: -1,
         },
         {
           title: "master japanese",
           description: "have N1",
-          date: "2020-04-04",
-          state: 1,
+          date: "2020-04-05",
+          state: -1,
         },
         {
           title: "learn react basic",
@@ -71,7 +69,7 @@ class App extends Component {
         isModal: true,
         listYesterday: arrListYes,
       });
-    console.log(this.state)
+    console.log(this.state);
   }
 
   handlerChangedState = (array) => {
@@ -91,27 +89,27 @@ class App extends Component {
   // }
 
   renderToDoList() {
-    this.setState({ 
-      // isCalendar: false, 
-      isToDoList: true 
+    this.setState({
+      // isCalendar: false,
+      isToDoList: true,
     });
     // console.log(this.state.isCalendar);
   }
 
   renderCalendar = () => {
-    this.setState({ 
-      // isCalendar: true, 
-      isToDoList: false 
+    this.setState({
+      // isCalendar: true,
+      isToDoList: false,
     });
     // console.log(this.state.isCalendar);
-  }
+  };
 
   deleteTodo = (index) => {
     let newlist = this.state.toDoList;
-    var deleted = newlist.splice(index,1);
+    var deleted = newlist.splice(index, 1);
     console.log(newlist);
-    this.setState({toDoList: newlist});
-  }
+    this.setState({ toDoList: newlist });
+  };
 
   renderAddToDo() {
     this.setState({
@@ -119,7 +117,7 @@ class App extends Component {
       isToDoList: false,
       isAddToDo: true,
     });
-    console.log(this.state)
+    console.log(this.state);
   }
 
   handlerAddItemToList = (item) => {
@@ -138,65 +136,84 @@ class App extends Component {
     // var todoIncomplete = this.state.toDoList.filter((todo)=>{return todo.state === 0;})
     return (
       <div className="App">
-          <div>
-            <div className="Calendar">
-              <FullCalendar
-                defaultView="dayGridMonth"
-                plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-                header={{
-                  left: "prev,next today ",
-                  center: "title ",
-                  right: "dayGridMonth",
-                }}
-                events={this.state.toDoList}
-                eventClick={function (info) {
-                  alert("Event: " + info.event.title + "\n" + "Time: " + info.event.start);
-
-                }}
+        <div>
+          <div className="Calendar">
+            <FullCalendar
+              defaultView="dayGridMonth"
+              plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+              header={{
+                left: "prev,next today ",
+                center: "title ",
+                right: "dayGridMonth",
+              }}
+              events={this.state.toDoList}
+              eventClick={function (info) {
+                alert(
+                  "Event: " +
+                    info.event.title +
+                    "\n" +
+                    "Time: " +
+                    info.event.start
+                );
+              }}
+            />
+            <button onClick={this.renderToDoList}>List of Works</button>
+            <button onClick={this.renderAddToDo}>Add Work</button>
+          </div>
+        </div>
+        <ReactModal
+          isOpen={this.state.isToDoList}
+          className="todoList"
+          overlayClassName="todoList_overlay"
+        >
+          <div className="ListItem">
+            <div className="title">
+              <h1>To Do List</h1>
+              <TodoComplete
+                list={this.state.toDoList}
+                delete={this.deleteTodo}
               />
-              <button onClick={this.renderToDoList}>List of Works</button>
-              <button onClick={this.renderAddToDo}>Add Work</button>
+              <TodoIncomplete
+                list={this.state.toDoList}
+                delete={this.deleteTodo}
+              />
             </div>
 
+            <button class="btn" onClick={this.renderAddToDo}>
+              Create new Work
+            </button>
+            <button class="btn" onClick={this.renderCalendar}>
+              Back to Calendar
+            </button>
           </div>
-            <ReactModal 
-             isOpen={this.state.isToDoList}
-             className="todoList"
-             overlayClassName="todoList_overlay"
+        </ReactModal>
+
+        <ReactModal
+          isOpen={this.state.isAddToDo}
+          className="addTodo"
+          overlayClassName="addTodo_overlay"
+          shouldCloseOnOverlayClick={true}
+        >
+          <div className="addTodo-content">
+            <span
+              class="close"
+              onClick={() =>
+                this.setState({ isToDoList: false, isAddToDo: false })
+              }
             >
-            <div className="ListItem">
-              <div className="title">
-                <h1>To Do List</h1>              
-                <TodoComplete list={this.state.toDoList} delete={this.deleteTodo}/>
-                <TodoIncomplete list={this.state.toDoList} delete={this.deleteTodo}/>
-              </div>
-
-
-              <button class="btn" onClick={this.renderAddToDo}>Create new Work</button>
-              <button class="btn" onClick={this.renderCalendar}>Back to Calendar</button>
-
-            </div>  
-          </ReactModal>
-          
-
-          <ReactModal 
-             isOpen={this.state.isAddToDo}
-             className="addTodo"
-             overlayClassName="addTodo_overlay"
-          >
+              &times;
+            </span>
             <AddTodo addItem={this.handlerAddItemToList} />
-            <button onClick={()=>{this.setState({isToDoList: false, isAddToDo: false,})}}>Close Modal</button>
-          </ReactModal>
-
+          </div>
+        </ReactModal>
         <ChangeStateModal
           content={{
             className: "change-state-modal",
             title: "Check your work yesterday",
-            message: "",
+            message: "You completed your work?",
           }}
           toDoList={this.state.listYesterday}
           modalIsOpen={this.state.isModal}
-
           handlerChangedState={this.handlerChangedState}
         />
       </div>

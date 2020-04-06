@@ -88,6 +88,7 @@ class ChangeStateModal extends Component {
         onRequestClose={this.props.requestClose}
         style={customStyle}
         className={content.className}
+        overlayClassName="change-state-modal_overlay"
       >
         <div className="modal-content">
           <h3 className="title">{content.title}</h3>
