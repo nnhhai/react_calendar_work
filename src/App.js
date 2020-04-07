@@ -23,7 +23,6 @@ import ReactModal from "react-modal";
 import "./Modal.css";
 
 var arrListYes = [];
-var arrAddedWork = [];
 
 class App extends Component {
   constructor(props) {
@@ -119,12 +118,10 @@ class App extends Component {
 
   handlerAddItemToList = (item) => {
     console.log(item);
-    arrAddedWork.push(item);
-    this.setState({
-      toDoList: arrAddedWork,
+    this.setState((prevState) => ({
       isAddToDo: false,
-      // isCalendar: true,
-    });
+      toDoList: prevState.toDoList.concat(item),
+    }));
   };
 
   render() {

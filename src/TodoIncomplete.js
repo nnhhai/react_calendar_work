@@ -13,7 +13,7 @@ class TodoIncomplete extends Component{
 	}
 
 	display = () => {
-		let theList = this.state.list.filter((todo)=>{return todo.state === 0;})
+		let theList = this.state.list.filter((todo)=>{return todo.state === 0 || todo.state === -1;})
 		let content = theList.map( todo => (
   			<div class= "ToDoListItem">
 	  		  	<h3 className="ToDoListItem-title">{todo.title}</h3>
