@@ -53,7 +53,11 @@ class App extends Component {
       isCalendar: true,
       isToDoList: false,
       isAddToDo: false,
+      isTodo: false,
     };
+
+    this.focusEvent = {};
+
     this.renderToDoList = this.renderToDoList.bind(this);
     this.renderAddToDo = this.renderAddToDo.bind(this);
     // this.handlerChangedState = this.handlerChangedState.bind(this);
@@ -124,6 +128,17 @@ class App extends Component {
     }));
   };
 
+  handleClickEvent = (info)=>{
+    this.focusEvent = this.state.toDoList.find( x => x.title === info.event.title)
+    console.log(this.focusEvent)
+    this.setState({isTodo:true});
+  }
+
+  closeTodo = ()=>{
+    this.focusEvent = {}
+    this.setState({isTodo:false})
+  }
+
   render() {
 
     return (
@@ -140,19 +155,25 @@ class App extends Component {
                 right: "dayGridMonth",
               }}
               events={this.state.toDoList}
-              eventClick={function (info) {
-                alert(
-                  "Event: " +
-                    info.event.title +
-                    "\n" +
-                    "Time: " +
-                    info.event.start
-                );
+              eventClick={(info) => {
+                // alert( "Event: " + info.event.title + "\n" + "Time: " + info.event.start + " ");
+                console.log(info.event)
+                console.log(info.event.extendedProps.description)
+                this.handleClickEvent(info)
               }}
             />
             <Button variant="primary" onClick={this.renderToDoList}>List of Works</Button>
             <Button variant="primary" onClick={this.renderAddToDo}>Add Work</Button>
           </Row>
+
+        <ReactModal
+          isOpen={this.state.isTodo}
+          className="toDo"
+          overlayClassName="overlay"
+        >
+          <Todo title={this.focusEvent.title} description={this.focusEvent.description} date={this.focusEvent.date} close={this.closeTodo}/>
+        </ReactModal>
+
         <ReactModal
           isOpen={this.state.isToDoList}
           className="todoList"
