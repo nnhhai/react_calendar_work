@@ -2,14 +2,23 @@ import React, { Component } from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./AddTodoForm.css"
+
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 class AddTodo extends Component {
   constructor(props) {
     super(props);
     this.onSubmit = this.onSubmit.bind(this);
+
+    this.state = {
+      startDate: new Date()
+    };
+
+    this.myRefs = React.createRef()
   }
-  state = {
-    startDate: new Date()
-  };
+
   handleChange = date => {
     this.setState({
       startDate: date
@@ -17,6 +26,7 @@ class AddTodo extends Component {
   };
   onSubmit(event) {
     event.preventDefault();
+    console.log(this.refs);
     let newItemTitle = this.refs.itemTitle.value;
     let newItemDes = this.refs.itemDescripton.value;
     if(newItemTitle && newItemDes) {
@@ -32,15 +42,26 @@ class AddTodo extends Component {
   }
   render () {
     return (
-      <form ref="form" onSubmit={this.onSubmit} className="ToDoItem">
-        <input type="text" ref="itemTitle" class="Todo-title" placeholder="Title"/>
-        <br></br>
-        <textarea ref="itemDescripton" class="Todo-description" placeholder="Description"/>
-        <br></br>
+    <Form ref="form" onSubmit={this.onSubmit} className="ToDoItem">
+      <Form.Group controlId="exampleForm.ControlInput1">
+        <Form.Label>Your work's Title</Form.Label>
+        <Form.Control type="text" placeholder="Enter your work's Title"  ref="itemTitle" />
+      </Form.Group>
+
+      <Form.Group controlId="exampleForm.ControlTextarea1">
+        <Form.Label>Your work's Description</Form.Label>
+        <Form.Control as="textarea" rows="3" ref="itemDescripton"/>
+      </Form.Group>
+
+      <Form.Group>
+        <Form.Label>Due date:</Form.Label>
         <DatePicker selected={this.state.startDate} onChange={this.handleChange}/>
-        <br></br>
-        <button type="submit" id="buton-confirm" >Add</button> 
-      </form>
+      </Form.Group>
+
+      <Button variant="primary" type="submit">
+        Submit
+      </Button>
+    </Form>
     );   
   }
 }

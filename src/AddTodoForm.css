@@ -25,3 +25,7 @@
     color: #fff;
     transition: all .2s ease-in-out;
 }
+
+.react-datepicker-wrapper{
+  margin-left: 10px;  
+}

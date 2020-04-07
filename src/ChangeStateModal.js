@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import Modal from "react-modal";
+import Button from 'react-bootstrap/Button'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import "./Modal.css";
 var arr = [];
 
@@ -96,12 +98,12 @@ class ChangeStateModal extends Component {
           <div>
             <ul>{this.renderListTodo(arr)}</ul>
           </div>
-          <button
+          <Button
             id="button-save"
             onClick={() => this.props.handlerChangedState(arr)}
           >
             Save
-          </button>
+          </Button>
         </div>
       </Modal>
     );

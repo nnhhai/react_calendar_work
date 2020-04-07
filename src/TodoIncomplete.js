@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Col from 'react-bootstrap/Col'
 
 
 class TodoIncomplete extends Component{
@@ -7,16 +8,8 @@ class TodoIncomplete extends Component{
 		this.state = {list : props.list}
 	}
 
-	delCom = (index) =>{
-		let newlist = this.state.list;
-		newlist.splice(index,1);
-		this.setState({list: newlist});
-	}
-
-	addCom = (todo) => {
-		let newlist = this.state.list;
-		newlist.push(todo);
-		this.setState({list : newlist});
+	handleDelete = (index, e) =>{
+		this.props.delete(index);
 	}
 
 	display = () => {
@@ -33,10 +26,12 @@ class TodoIncomplete extends Component{
 
 	render(){
 		return (
-			<div class="todoIncomplete">
+			<Col sm={ {span: 4, offset: 2} }>
+			<div class= "todoIncomplete">
 				<h2 class="subtitle">Incompleted List</h2>
 				{this.display()}
 			</div>
+			</Col>
 	)}
 }
 
