@@ -25,6 +25,7 @@ class TodoComplete extends Component{
 	  		  	<h3 className="ToDoListItem-title">{todo.title}</h3>
 	  		  	<span class="delete" onClick={(e) => this.handleDelete(this.state.list.indexOf(todo), e)}>X</span>
 	  		  	<p className="ToDoListItem-description">{todo.description}</p>
+	  		  	<span class="date">{todo.date}</span>
   		  	</div>
   		));
   		return content;

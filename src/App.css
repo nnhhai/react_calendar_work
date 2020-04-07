@@ -89,18 +89,22 @@
 
 .ListItem {
   width: 65vw;
-  max-height: 80vh;
+  max-height: 90vh;
   padding: 4px 2px;
   border: 1px solid black;
   border-radius: 4px;
   box-shadow: 1px 2px 5px 3px rgba(0, 0, 0, .1);
   background: #bfd0f2;
-  text-align: center;
+  /*text-align: center;*/
 }
 
 .ListItem button{
   text-align: center;
   margin:20px;
+}
+
+.ListItem h1{
+  text-align: center;
 }
 
 .ListItem .todoComplete {
@@ -111,6 +115,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 20px;
 
   border: 1px solid #1d3dcb;
   border-radius: 4px;
@@ -125,6 +130,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 20px;
   
   border: 1px solid #ff2424;
   border-radius: 4px;
@@ -138,7 +144,7 @@
 .ToDoListItem {
   margin: 20px;
   border-radius: 4px;
-  width: 300px;
+  width: 100%;
   box-shadow: 1px 2px 5px 3px rgba(0, 0, 0, .1);
   padding: 4px 2px;
   position: relative;  
@@ -157,7 +163,10 @@
 .ToDoListItem-description {
   word-wrap: break-word;
   padding: 8px;
+  padding-bottom: 0;
 }
+
+.ToDoListItem p{margin-bottom: 0}
 
 .ToDoListItem .delete {
   position: absolute;
@@ -165,7 +174,11 @@
   right: 10px;
   cursor: pointer;
 }
-
+.ToDoListItem .date{
+  font-size: 10px;
+  font-style: italic;
+  padding-left: 10px;  
+}
 
 .addTodo {
   display: block;
@@ -199,9 +212,6 @@
   border-radius: 12px;
 }
 
-.addTodo_overlay{
-  
-}
 .addTodo>.addTodo-content> .close {
   color: #aaaaaa;
   float: right;
