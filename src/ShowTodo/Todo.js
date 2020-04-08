@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import "./Todo.css"
 
 class Todo extends Component {
   render() {
-    console.log("still happen")
+    console.log(this.props)
     return (
       <Row className="todo">
         <div className="backdrop"></div>
@@ -14,13 +13,17 @@ class Todo extends Component {
           <h2 className="title">TASK DESCRIPTION</h2>
           <div className="Todo card-body">
             <div className="Todo-title card-title">
-              <p>Task name: {this.props.title}</p>
+              <p>Task name: {this.props.content.title}</p>
             </div>
             <div className="Todo-description card-text">
               Task description: <br/>
-              {this.props.description}
+              {this.props.content.description}
             </div>
-            <div className="Todo-date card-date">{this.props.date}</div>
+            <div className="Todo-description card-text">
+              Task's state: <br/>
+              {this.props.content.state === 1 ? 'Completed' : 'Incompleted'}
+            </div>
+            <div className="Todo-date card-date">{this.props.content.date}</div>
           </div>
           <Button onClick={this.props.close}>
             Close
