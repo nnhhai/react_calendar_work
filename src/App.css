@@ -110,7 +110,8 @@
   justify-content: center;
   align-items: center;
   padding: 20px;
-
+  overflow: scroll;
+  height: 320px;
   border: 1px solid #1d3dcb;
   border-radius: 4px;
   background-color: #9896ff ;
@@ -125,7 +126,8 @@
   justify-content: center;
   align-items: center;
   padding: 20px;
-  
+  overflow: scroll;
+  height: 320px;
   border: 1px solid #ff2424;
   border-radius: 4px;
   background-color: #ffd6d6;
