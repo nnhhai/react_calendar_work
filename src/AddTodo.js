@@ -54,7 +54,7 @@ class AddTodo extends Component {
       </Form.Group>
 
       <Form.Group>
-        <Form.Label>Due date:</Form.Label>
+        <Form.Label >Due date:</Form.Label>
         <DatePicker selected={this.state.startDate} onChange={this.handleChange}/>
       </Form.Group>
 
