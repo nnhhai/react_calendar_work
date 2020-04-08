@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Col from 'react-bootstrap/Col'
+
 // import './ToDoListItem.css';
 // import TodoComplete from "./TodoComplete.js"
 // import TodoUncomplete from "./TodoIncomplete.js"
@@ -23,6 +25,7 @@ class TodoComplete extends Component{
 	  		  	<h3 className="ToDoListItem-title">{todo.title}</h3>
 	  		  	<span class="delete" onClick={(e) => this.handleDelete(this.state.list.indexOf(todo), e)}>X</span>
 	  		  	<p className="ToDoListItem-description">{todo.description}</p>
+	  		  	<span class="date">{todo.date}</span>
   		  	</div>
   		));
   		return content;
@@ -30,10 +33,12 @@ class TodoComplete extends Component{
 
 	render(){
 		return (
-			<div class="todoComplete">
+			<Col sm={ {span: 4, offset: 1} } >
+  			<div class="todoComplete">
 				<h2 class="subtitle">Completed List</h2>
 				{this.display()}
 			</div>
+			</Col>
 	)}
 }
 
